@@ -378,8 +378,10 @@ async function saveStockMovement(e){
   document.getElementById('stock-movement-modal').classList.add('hidden');
   await loadStock();
 }
-document.getElementById('stock-product-form')?.addEventListener('submit',saveStockProduct);
-document.getElementById('stock-movement-form')?.addEventListener('submit',saveStockMovement);
+document.addEventListener('submit',e=>{
+  if(e.target.id==='stock-product-form') saveStockProduct(e);
+  if(e.target.id==='stock-movement-form') saveStockMovement(e);
+});
 document.querySelectorAll('[data-close-stock-product]').forEach(b=>b.addEventListener('click',()=>document.getElementById('stock-product-modal').classList.add('hidden')));
 document.querySelectorAll('[data-close-stock-movement]').forEach(b=>b.addEventListener('click',()=>document.getElementById('stock-movement-modal').classList.add('hidden')));
 </script>
